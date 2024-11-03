@@ -1,10 +1,15 @@
 import React,{useEffect,useState} from "react";
-import load from "./api";
+import {load} from "./api";
 function  Sidetable() {
     const [customers, setCustomers] = useState([]);
     useEffect(() => {
-        load(); // Call the load function to fetch data
-    }, []);
+        const value=async()=>{
+            const val=await load()
+            setCustomers(val);  
+        };
+        value();
+
+    }, [customers]);
     return (
         <div className="table-container">
             <div className="search-container">

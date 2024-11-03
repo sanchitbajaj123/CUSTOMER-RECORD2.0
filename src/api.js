@@ -1,5 +1,4 @@
 
-
 const Api="http://localhost:5000";
 async function add (data) {
     console.log(data);
