@@ -7,7 +7,10 @@ const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 const Customer = require('./schema'); // Import Customer schema
 
+const cors=require('cors')
+
 const app = express();
+app.use(cors())
 const port = 5000;
 const hostname = '0.0.0.0';
 
@@ -35,6 +38,7 @@ app.post('/update', (req, res) => {
 });
 
 app.post('/add-customer', async (req, res) => {
+    console.log("called")
     console.log(req.body);
     const currentDate = moment().tz('Asia/Kolkata'); // Set to India time zone
     const date = currentDate.format('DD/MM/YYYY'); // Format date
@@ -66,8 +70,8 @@ app.post('/add-customer', async (req, res) => {
         dateAdded: date,
         timeAdded: time
     });
-
     await newCustomer.save();
+    console.log("saved")
     res.status(201).json({ message: 'Customer added', customer: newCustomer });
 });
 
