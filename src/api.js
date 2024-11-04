@@ -17,4 +17,10 @@ async function load(){
     console.log(data);
     return data;
 }
-export {add,load}
+async function getCustomer(id){
+    const response = await fetch(Api+"/get-customer/"+id);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+export {add,load,getCustomer}

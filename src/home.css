@@ -1,8 +1,5 @@
 /* General Styling */
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     background-color: #e0f7fa;
     font-family: 'Roboto', sans-serif;
     color: #333;

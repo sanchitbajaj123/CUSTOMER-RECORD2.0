@@ -1,0 +1,110 @@
+/* General body styling */
+body {
+    
+    min-height: 100vh;
+   
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+
+}
+
+.contm {
+    
+    padding-top: 0px;
+    
+}
+/* Center alignment */
+.center-align {
+    text-align: center;
+    color: #333;
+    margin-top: 0;
+    
+}
+
+/* Header section */
+.section {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+/* Customer information card */
+.customer-info {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px; /* Adjust as needed */
+}
+
+/* Heading inside the customer info */
+.customer-info h3 {
+    font-size: 26px;
+    color: #d32f2f; /* Dark red */
+    margin-bottom: 20px;
+}
+
+/* Styling for icons and text alignment */
+.customer-info p {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.material-icons {
+    color: #00796b;
+    margin-right: 10px;
+    font-size: 20px; /* Adjust icon size */
+}
+
+.customer-info strong {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+}
+
+/* Prescription table styling */
+.prescription-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.prescription-table th, .prescription-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.prescription-table th {
+    background-color: #00796b;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.prescription-table td {
+    color: #333;
+}
+
+.prescription-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Button styling */
+button {
+    background-color: #0288d1; /* Blue color */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #01579b; /* Darker blue */
+}

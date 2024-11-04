@@ -80,9 +80,9 @@ app.get('/customers', async (req, res) => {
     res.status(200).json(customers);
 });
 
-app.get('/get-customer', async (req, res) => {
+app.get('/get-customer/:id', async (req, res) => {
     try {
-        const up = req.query.id;
+        const up = req.params.id;
         const customer = await Customer.findOne({ _id: up });
         if (customer) {
             console.log(customer);

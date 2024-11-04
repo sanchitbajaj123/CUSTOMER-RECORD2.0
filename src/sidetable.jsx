@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { load } from "./api";
+import { Navigate,useNavigate } from "react-router-dom";
 
 function Sidetable() {
     const [customers, setCustomers] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -13,7 +15,12 @@ function Sidetable() {
         fetchData();
     }, []);
 
-  
+
+    const handleRowClick = (id) => {
+        console.log("Clicked customer ID:", id);
+        navigate(`/get-customer/${id}`);
+    };
+
     const displayedCustomers = searchTerm
         ? customers.filter((customer) =>
             customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -49,11 +56,11 @@ function Sidetable() {
                 <tbody id="customerTableBody">
                     {displayedCustomers.length > 0 ? (
                         displayedCustomers.map((customer) => (
-                            <tr key={customer._id}>
+                            <tr key={customer._id} onClick={() => handleRowClick(customer._id)}>
                                 <td>{customer.name}</td>
                                 <td>{customer.phone}</td>
-                                <td>{customer.dateAdded}</td> {/* Adjust if the field name is different */}
-                                <td>{customer.timeAdded}</td> {/* Adjust if the field name is different */}
+                                <td>{customer.dateAdded}</td>
+                                <td>{customer.timeAdded}</td>
                                 <td>{customer._id}</td>
                             </tr>
                         ))
