@@ -211,7 +211,7 @@ function Home() {
                             <label htmlFor="remark">Remark</label>
                         </div>
                         <button type="submit" className="btn waves-effect waves-light red-2">
-                            Submit
+                            ADD
                         </button>
                     </form>
                 </div>

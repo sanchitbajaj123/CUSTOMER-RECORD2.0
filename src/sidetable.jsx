@@ -1,19 +1,37 @@
-import React,{useEffect,useState} from "react";
-import {load} from "./api";
-function  Sidetable() {
-    const [customers, setCustomers] = useState([]);
-    useEffect(() => {
-        const value=async()=>{
-            const val=await load()
-            setCustomers(val);  
-        };
-        value();
+import React, { useEffect, useState } from "react";
+import { load } from "./api";
 
-    }, [customers]);
+function Sidetable() {
+    const [customers, setCustomers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const val = await load();
+            setCustomers(val);
+        };
+        fetchData();
+    }, []);
+
+  
+    const displayedCustomers = searchTerm
+        ? customers.filter((customer) =>
+            customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            customer.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            customer._id.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+        : customers;
+
     return (
         <div className="table-container">
             <div className="search-container">
-                <input id="search" type="text" placeholder="Search customers..." />
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Search customers..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
             </div>
             <center>
                 <h5>Customer List</h5>
@@ -29,8 +47,8 @@ function  Sidetable() {
                     </tr>
                 </thead>
                 <tbody id="customerTableBody">
-                    {customers.length > 0 ? (
-                        customers.map((customer) => (
+                    {displayedCustomers.length > 0 ? (
+                        displayedCustomers.map((customer) => (
                             <tr key={customer._id}>
                                 <td>{customer.name}</td>
                                 <td>{customer.phone}</td>
@@ -41,13 +59,13 @@ function  Sidetable() {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="5">No customers found.</td> {/* Fallback message if no customers are present */}
+                            <td colSpan="5">No customers found.</td>
                         </tr>
                     )}
                 </tbody>
             </table>
         </div>
     );
-
 }
+
 export default Sidetable;
