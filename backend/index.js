@@ -131,12 +131,11 @@ app.get('/delete/:id', async (req, res) => {
     }
 });
 
-app.get('/balanceclear', async (req, res) => {
-    const up=req.query.id;
+app.get('/balanceclear/:id', async (req, res) => {
+    const up=req.params.id;
     const currentDate = moment().tz('Asia/Kolkata');
     const date = currentDate.format('DD/MM/YYYY');
     const customer = await Customer.findOne({ _id: up });
-    
     customer.remark = "Balance(" + customer.balance + ") cleared successfully on " + date;
     customer.balance = 0;
     await customer.save();

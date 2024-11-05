@@ -29,4 +29,10 @@ async function deleteCustomer(id){
     console.log(data);
     return data;
 }
-export {add,load,getCustomer,deleteCustomer}
+async function clearBalance(id){
+    const response = await fetch(Api+"/balanceclear/"+id);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+export {add,load,getCustomer,deleteCustomer,clearBalance}

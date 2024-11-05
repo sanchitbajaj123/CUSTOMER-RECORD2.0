@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCustomer } from "./api";
 import './get.css';
-import {deleteCustomer} from "./api";
+import {deleteCustomer,clearBalance} from "./api";
 function GetCustomer() {
     const [customer, setCustomer] = useState(null);
     const { id } = useParams(); 
@@ -10,6 +10,13 @@ function GetCustomer() {
         const data = await deleteCustomer(id);
         console.log(data);
         alert("Customer deleted successfully");
+        window.location.href="/home";
+    }
+    const clearBal=async()=>{
+        const data = await clearBalance(id);
+        console.log(data);
+        alert("Balance cleared successfully");
+        window.location.reload();
     }
     useEffect(() => {
         const fetchCustomer = async () => {
@@ -96,7 +103,7 @@ function GetCustomer() {
 
                 <p>
                     <i className="material-icons left">comment</i>
-                    <strong>Remarks:</strong> <span id="customer-remarks">{customer.remarks}</span>
+                    <strong>Remarks:</strong> <span id="customer-remarks">{customer.remark}</span>
                 </p>
                 <p>
                     <i className="material-icons left">date_range</i>
@@ -113,7 +120,7 @@ function GetCustomer() {
                     <a href="/home" className="btn blue waves-effect waves-light">Back to Home</a>
                 </div>
                 <div style={{"margin-bottom":"3px"}} className="center-align back-button">
-                    <button className="btn blue waves-effect waves-light">BALANCE CLEAR</button>
+                    <button onClick={clearBal} className="btn blue waves-effect waves-light">BALANCE CLEAR</button>
                 </div>
                 <div className="center-align back-button">
                     <button onClick={del}  className="btn blue waves-effect waves-light" >Delete</button>
