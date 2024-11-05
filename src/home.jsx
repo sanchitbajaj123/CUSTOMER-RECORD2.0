@@ -40,12 +40,57 @@ function Home() {
             [name]: value,
         });
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Customer Data Submitted:", formData);
-        const a=async()=>{ await add(formData)};
-        a();
+    
+        // Construct the JSON object according to the backend structure
+        const newCustomer = {
+            name: formData.name,
+            phone: formData.phone,
+            frame: formData.frame,
+            glasses: formData.glasses,
+            contactlens: formData.contactlens,
+            remark: formData.remark,
+            prescription: {
+                right: {
+                    sphDV: formData.rightSphDv,
+                    cylDV: formData.rightCylDv,
+                    axisDV: formData.rightAxisDv,
+                    prismDV: formData.rightPrismDv,
+                    sphNV: formData.rightSphNv,
+                    cylNV: formData.rightCylNv,
+                    axisNV: formData.rightAxisNv,
+                    prismNV: formData.rightPrismNv,
+                    add: formData.rightAdd,
+                },
+                left: {
+                    sphDV: formData.leftSphDv,
+                    cylDV: formData.leftCylDv,
+                    axisDV: formData.leftAxisDv,
+                    prismDV: formData.leftPrismDv,
+                    sphNV: formData.leftSphNv,
+                    cylNV: formData.leftCylNv,
+                    axisNV: formData.leftAxisNv,
+                    prismNV: formData.leftPrismNv,
+                    add: formData.leftAdd,
+                },
+            },
+            total: formData.total,
+            advance: formData.advance,
+            balance: formData.balance,
+            dateAdded: new Date().toISOString().split('T')[0], // current date in YYYY-MM-DD format
+            timeAdded: new Date().toLocaleTimeString(), // current time
+        };
+    
+        // Send the constructed object to your API
+        const submitData = async () => {
+            await add(newCustomer);
+        };
+        
+        submitData();
+    
+        // Reset the form
         setFormData({
             name: "",
             phone: "",
@@ -76,6 +121,8 @@ function Home() {
             remark: "",
         });
     };
+    
+    
 
     return (
         <>

@@ -43,16 +43,42 @@ app.post('/add-customer', async (req, res) => {
     const currentDate = moment().tz('Asia/Kolkata'); // Set to India time zone
     const date = currentDate.format('DD/MM/YYYY'); // Format date
     const time = currentDate.format('HH:mm:ss'); // Format time
-
     const {
-        name, phone, frame, glasses, contactlens, remark,
-        'right-sph-dv': rightSphDV, 'right-cyl-dv': rightCylDV, 'right-axis-dv': rightAxisDV, 'right-prism-dv': rightPrismDV,
-        'right-sph-nv': rightSphNV, 'right-cyl-nv': rightCylNV, 'right-axis-nv': rightAxisNV, 'right-prism-nv': rightPrismNV, 'right-add': rightAdd,
-        'left-sph-dv': leftSphDV, 'left-cyl-dv': leftCylDV, 'left-axis-dv': leftAxisDV, 'left-prism-dv': leftPrismDV,
-        'left-sph-nv': leftSphNV, 'left-cyl-nv': leftCylNV, 'left-axis-nv': leftAxisNV, 'left-prism-nv': leftPrismNV, 'left-add': leftAdd,
-        total, advance, balance
-    } = req.body;
-
+        name,
+        phone,
+        frame,
+        glasses,
+        contactlens,
+        remark,
+        prescription: {
+          right: {
+            sphDV: rightSphDV,
+            cylDV: rightCylDV,
+            axisDV: rightAxisDV,
+            prismDV: rightPrismDV,
+            sphNV: rightSphNV,
+            cylNV: rightCylNV,
+            axisNV: rightAxisNV,
+            prismNV: rightPrismNV,
+            add: rightAdd
+          },
+          left: {
+            sphDV: leftSphDV,
+            cylDV: leftCylDV,
+            axisDV: leftAxisDV,
+            prismDV: leftPrismDV,
+            sphNV: leftSphNV,
+            cylNV: leftCylNV,
+            axisNV: leftAxisNV,
+            prismNV: leftPrismNV,
+            add: leftAdd
+          }
+        },
+        total,
+        advance,
+        balance
+      } = req.body;
+    console.log(rightSphDV)
     const newCustomer = new Customer({
         name,
         phone,
@@ -95,9 +121,9 @@ app.get('/get-customer/:id', async (req, res) => {
     }
 });
 
-app.get('/delete', async (req, res) => {
+app.get('/delete/:id', async (req, res) => {
     try {
-        const up=req.query.id;
+        const up=req.params.id;
         await Customer.deleteOne({ _id: up });
         res.status(200).json({ message: 'Customer deleted successfully' });
     } catch (error) {

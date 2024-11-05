@@ -23,4 +23,10 @@ async function getCustomer(id){
     console.log(data);
     return data;
 }
-export {add,load,getCustomer}
+async function deleteCustomer(id){
+    const response = await fetch(Api+"/delete/"+id);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+export {add,load,getCustomer,deleteCustomer}

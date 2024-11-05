@@ -13,7 +13,7 @@ function Sidetable() {
             setCustomers(val);
         };
         fetchData();
-    }, []);
+    }, [customers]);
 
 
     const handleRowClick = (id) => {
