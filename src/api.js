@@ -35,4 +35,10 @@ async function clearBalance(id){
     console.log(data);
     return data;
 }
-export {add,load,getCustomer,deleteCustomer,clearBalance}
+async function pendingbalance(){
+    const response = await fetch(Api+"/pendingbalance");
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+export {add,load,getCustomer,deleteCustomer,clearBalance,pendingbalance}

@@ -1,0 +1,58 @@
+/* Overall container styling */
+.pending-balance-container {
+    width: 80%;
+    padding: 20px;
+    background-color: #e0f7fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Heading style */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00796b; /* Dark teal for heading */
+}
+
+/* Search bar styling */
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #00796b; /* Border matches heading color */
+    border-radius: 5px;
+    background-color: #b2ebf2; /* Slightly darker than background */
+    color: #004d40; /* Darker teal text */
+}
+
+/* Table styling */
+.pending-balance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff; /* White table background for contrast */
+}
+
+.pending-balance-table th {
+    background-color: #00796b; /* Dark teal for headers */
+    color: #ffffff; /* White text for headers */
+    padding: 12px;
+}
+
+.pending-balance-table td {
+    padding: 12px;
+    color: #004d40; /* Dark teal for text */
+}
+
+.pending-balance-table tr:nth-child(even) {
+    background-color: #b2ebf2; /* Light teal for even rows */
+}
+
+.pending-balance-table tr:hover {
+    background-color: #80deea; /* Slightly darker teal for hover effect */
+}
+
+/* Styling for table borders */
+.pending-balance-table th, .pending-balance-table td {
+    border: 1px solid #004d40; /* Border color to match dark teal theme */
+}
