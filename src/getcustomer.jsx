@@ -24,7 +24,7 @@ function GetCustomer() {
             setCustomer(data);
         };
         fetchCustomer();
-    }, [id]);
+    }, [id,customer]);
 
     if (!customer) {
         return <div>Loading...</div>;
@@ -52,7 +52,7 @@ function GetCustomer() {
                 </p>
                 <p>
                     <i className="material-icons left">visibility</i>
-                    <strong>Contact Lens:</strong> <span id="customer-contact-lens">{customer.contactLens}</span>
+                    <strong>Contact Lens:</strong> <span id="customer-contact-lens">{customer.contactlens}</span>
                 </p>
 
                 <div className="input-field">
