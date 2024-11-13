@@ -1,5 +1,6 @@
 
-const Api="https://customer-record-2-0.vercel.app";
+// const Api="https://customer-record-2-0.vercel.app";
+const Api="http://localhost:5000";
 async function add (data) {
     console.log(data);
     const response = await fetch(Api+"/add-customer", {
@@ -10,6 +11,7 @@ async function add (data) {
         body: JSON.stringify(data)
     });  
     console.log('API data:', response); 
+    alert("Customer Added Successfully");
 }
 async function load(){
     const response = await fetch(Api+"/customers");

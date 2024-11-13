@@ -51,10 +51,11 @@ function Home() {
     }, [formData.total, formData.advance]);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+       
+        console.log("Form Submitted");
         console.log("Customer Data Submitted:", formData);
     
-        // Construct the JSON object according to the backend structure
+        
         const newCustomer = {
             name: formData.name,
             phone: formData.phone,
@@ -100,37 +101,37 @@ function Home() {
         
         submitData();
     
-        // Reset the form
-        setFormData({
-            name: "",
-            phone: "",
-            frame: "",
-            glasses: "",
-            contactlens: "",
-            rightSphDv: "",
-            rightCylDv: "",
-            rightAxisDv: "",
-            rightPrismDv: "",
-            rightSphNv: "",
-            rightCylNv: "",
-            rightAxisNv: "",
-            rightPrismNv: "",
-            rightAdd: "",
-            leftSphDv: "",
-            leftCylDv: "",
-            leftAxisDv: "",
-            leftPrismDv: "",
-            leftSphNv: "",
-            leftCylNv: "",
-            leftAxisNv: "",
-            leftPrismNv: "",
-            leftAdd: "",
-            total: "",
-            advance: "",
-            balance: "",
-            remark: "",
-        });
-        window.location.reload();
+        //  Reset the form
+        // setFormData({
+        //     name: "",
+        //     phone: "",
+        //     frame: "",
+        //     glasses: "",
+        //     contactlens: "",
+        //     rightSphDv: "",
+        //     rightCylDv: "",
+        //     rightAxisDv: "",
+        //     rightPrismDv: "",
+        //     rightSphNv: "",
+        //     rightCylNv: "",
+        //     rightAxisNv: "",
+        //     rightPrismNv: "",
+        //     rightAdd: "",
+        //     leftSphDv: "",
+        //     leftCylDv: "",
+        //     leftAxisDv: "",
+        //     leftPrismDv: "",
+        //     leftSphNv: "",
+        //     leftCylNv: "",
+        //     leftAxisNv: "",
+        //     leftPrismNv: "",
+        //     leftAdd: "",
+        //     total: "",
+        //     advance: "",
+        //     balance: "",
+        //     remark: "",
+        // });
+        
     };
     
     
