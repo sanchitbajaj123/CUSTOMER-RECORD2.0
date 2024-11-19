@@ -11,7 +11,7 @@ async function add (data) {
         body: JSON.stringify(data)
     });  
     console.log('API data:', response); 
-    alert("Customer Added Successfully");
+    alert(data.name+" Added Successfully");
 }
 async function load(){
     const response = await fetch(Api+"/customers");
