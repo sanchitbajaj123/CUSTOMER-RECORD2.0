@@ -165,7 +165,7 @@ app.get('/sms/:id', async (req, res) => {
         console.log("aa") 
         console.log(accountSid)
 
-        const authToken = "30dbea2891ffe7da5ba2af1455b00bee";
+        const authToken = process.env.TWILIO_AUTH_TOKEN;
         const client = twilio(accountSid, authToken);
 
         
@@ -189,7 +189,7 @@ app.get('/sms/:id', async (req, res) => {
             Total: ₹${customer.total}
             Advance: ₹${customer.advance}
             Balance: ₹${customer.balance}
-            
+            Remark: ${customer.remark}
             If you have any queries, feel free to contact us.
         `;
 
