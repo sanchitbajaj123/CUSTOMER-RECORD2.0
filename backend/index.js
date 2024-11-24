@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
 const Customer = require('./schema'); // Import Customer schema
+const twilio = require("twilio");
+require('dotenv').config();
 
 const cors=require('cors')
 
@@ -20,7 +22,7 @@ app.use(bodyParser.json());
 let up = ''; // Variable to hold customer ID
 
 // MongoDB setup
-mongoose.connect('mongodb+srv://sanchitbajaj2003:root@cluster0.n0euieh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.MONGOURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -150,6 +152,64 @@ app.get('/pendingbalance', async (req, res) => {
         res.status(500).json({ success: false, message: 'Server error', error });
     }
 });
+app.get('/sms/:id', async (req, res) => {
+    const up = req.params.id;
+    try {
+        const customer = await Customer.findById(up);
+        
+        if (!customer) {
+            return res.status(404).json({ message: 'Customer not found' });
+        }
+
+        const accountSid = process.env.TWILIO_ACCOUNT_SID  
+        console.log("aa") 
+        console.log(accountSid)
+
+        const authToken = "30dbea2891ffe7da5ba2af1455b00bee";
+        const client = twilio(accountSid, authToken);
+
+        
+        const messageBody = `
+            --------MISHA EYE CARE--------
+            Hello ${customer.name},
+            Here are your details:
+            Frame: ${customer.frame}
+            Glasses: ${customer.glasses}
+            Contact Lenses: ${customer.contactlens}
+            Prescription (Right Eye):
+                SPH (DV): ${customer.prescription.right.sphDV}
+                CYL (DV): ${customer.prescription.right.cylDV}
+                AXIS (DV): ${customer.prescription.right.axisDV}
+                Add: ${customer.prescription.right.add}
+            Prescription (Left Eye):
+                SPH (DV): ${customer.prescription.left.sphDV}
+                CYL (DV): ${customer.prescription.left.cylDV}
+                AXIS (DV): ${customer.prescription.left.axisDV}
+                Add: ${customer.prescription.left.add}
+            Total: ₹${customer.total}
+            Advance: ₹${customer.advance}
+            Balance: ₹${customer.balance}
+            
+            If you have any queries, feel free to contact us.
+        `;
+
+        // Send the SMS message via WhatsApp
+        const message = await client.messages.create({
+            body: messageBody,
+            from: "whatsapp:+14155238886",  // Twilio's WhatsApp number
+            to: `whatsapp:+91${customer.phone}`  // Customer's phone number
+        });
+
+        console.log("Message sent:", message.body);
+
+        res.status(200).json({ message: 'SMS sent successfully', messageDetails: message.body });
+
+    } catch (error) {
+        console.error("Error sending SMS:", error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
 
 // Start the server
 const server = app.listen(process.env.PORT || port, hostname, () => {
