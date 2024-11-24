@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCustomer } from "./api";
 import './get.css';
-import {deleteCustomer,clearBalance} from "./api";
+import {deleteCustomer,clearBalance,sms} from "./api";
 function GetCustomer() {
     const [customer, setCustomer] = useState(null);
     const { id } = useParams(); 
@@ -122,6 +122,10 @@ function GetCustomer() {
                 <div style={{"margin-bottom":"3px"}} className="center-align back-button">
                     <button onClick={clearBal} className="btn blue waves-effect waves-light">BALANCE CLEAR</button>
                 </div>
+                <div style={{"margin-bottom":"3px"}} className="center-align back-button">
+                    <button onClick={async()=>await sms(id)} className="btn blue waves-effect waves-light">SEND SMS</button>
+                </div>
+                
                 <div className="center-align back-button">
                     <button onClick={del}  className="btn blue waves-effect waves-light" >Delete</button>
                 </div>

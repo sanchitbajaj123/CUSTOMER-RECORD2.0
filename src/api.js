@@ -1,6 +1,6 @@
 
-const Api="https://customer-record-2-0.vercel.app";
-// const Api="http://localhost:5000";
+// const Api="https://customer-record-2-0.vercel.app";
+const Api="http://localhost:5000";
 async function add (data) {
     console.log(data);
     const response = await fetch(Api+"/add-customer", {
@@ -43,4 +43,12 @@ async function pendingbalance(){
     console.log(data);
     return data;
 }
-export {add,load,getCustomer,deleteCustomer,clearBalance,pendingbalance}
+async function sms(id){
+    const response = await fetch(Api+"/sms/"+id);
+    const data = await response.json();
+    console.log(data);
+    alert("SMS sent successfully");
+    return data;
+
+}
+export {add,load,getCustomer,deleteCustomer,clearBalance,pendingbalance,sms}
