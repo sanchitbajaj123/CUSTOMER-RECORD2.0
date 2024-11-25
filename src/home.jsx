@@ -3,6 +3,8 @@ import "./home.css";
 import Sidetable from "./sidetable";
 import {add} from "./api";
 function Home() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -51,6 +53,7 @@ function Home() {
     }, [formData.total, formData.advance]);
 
     const handleSubmit = (e) => {
+        setIsModalOpen(true);
         e.preventDefault();
         console.log("Form Submitted");
         console.log("Customer Data Submitted:", formData);
@@ -276,6 +279,50 @@ function Home() {
                         </button>
                         </center>
                     </form>
+                    {isModalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)', // Overlay background
+            zIndex: 1000, // Ensure it's above other content
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: '#fff',
+              padding: '20px',
+              borderRadius: '8px',
+              width: '300px',
+              textAlign: 'center',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <h1>scan this qr code to get updates</h1>
+            <img src="./qr.png" alt="" />
+            <button
+              onClick={() => setIsModalOpen(false)}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '5px',
+                backgroundColor: '#00796b',
+                color: '#fff',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
                 </div>
 
                 <Sidetable />
