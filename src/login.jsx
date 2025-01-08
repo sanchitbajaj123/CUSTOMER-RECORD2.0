@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './login.css';
-import axios from 'axios';
+import { getqr } from './api';
 
 const Login = () => {
   const [qrCode, setQrCode] = useState(null);
@@ -9,7 +9,7 @@ const Login = () => {
     // Fetch the QR code from the server
     const fetchQRCode = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/generateQR');
+        const response = await getqr(); // Call the getqr function from the API
         console.log('QR code response:', response);
         setQrCode(response.data); // Set the QR code state
       } catch (error) {

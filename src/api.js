@@ -50,4 +50,9 @@ async function sms(id){
     alert("SMS sent successfully");
     return data;
 }
-export {add,load,getCustomer,deleteCustomer,clearBalance,pendingbalance,sms}
+async function getqr() {
+    const response = await fetch(Api+"/generateQR");
+    console.log('QR code response:', response);
+    return response;
+}
+export {add,load,getCustomer,deleteCustomer,clearBalance,pendingbalance,sms,getqr}
