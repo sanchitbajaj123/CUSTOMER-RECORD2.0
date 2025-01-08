@@ -1,9 +1,24 @@
-import React, { useEffect } from 'react';
-import './login.css'; // Assuming you store your CSS here
+import React, { useEffect, useState } from 'react';
+import './login.css';
+import axios from 'axios';
 
 const Login = () => {
+  const [qrCode, setQrCode] = useState(null);
+
   useEffect(() => {
-    // Initialize the YouTube Iframe API
+    // Fetch the QR code from the server
+    const fetchQRCode = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/generateQR');
+        console.log('QR code response:', response);
+        setQrCode(response.data); // Set the QR code state
+      } catch (error) {
+        console.error('Failed to fetch QR code:', error);
+      }
+    };
+    fetchQRCode();
+
+ 
     const onYouTubeIframeAPIReady = () => {
       let player;
       player = new window.YT.Player('video-background', {
@@ -47,7 +62,20 @@ const Login = () => {
       alert('Wrong password');
     }
   };
-
+  const h6Style = {
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    textAlign: 'center',
+    color: 'black',
+    background: 'linear-gradient(to right, #ff2d55, #ff5f6d)',
+    padding: '20px',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    display: 'inline-block',
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    animation: 'pulse 1.5s infinite',
+  };
   return (
     <div>
       <div className="video-bg" id="video-background"></div>
@@ -72,6 +100,14 @@ const Login = () => {
             </button>
           </div>
         </form>
+        <div className="qr-section center-align">
+          <h6 style={h6Style}>Scan QR Code to Connect whatsapp</h6>
+          {qrCode ? (
+                  <img src={qrCode} /> // Render the QR code HTML
+          ) : (
+            <p style={{"color":"RED","fontSize":"25px"}}>ALREADY LINKED </p>
+          )}
+        </div>
       </div>
     </div>
   );

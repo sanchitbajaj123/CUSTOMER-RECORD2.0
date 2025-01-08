@@ -24,7 +24,7 @@ function GetCustomer() {
             setCustomer(data);
         };
         fetchCustomer();
-    }, [id,customer]);
+    }, []);
 
     if (!customer) {
         return <div>Loading...</div>;
