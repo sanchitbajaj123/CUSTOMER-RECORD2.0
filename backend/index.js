@@ -206,22 +206,15 @@ app.get('/sms/:id',async (req, res) => {
         `;
     const formattedNumber = `91${customer.phone}@c.us`; 
         console.log('Sending message to:', formattedNumber);
-        const imageUrl="data:image/jpeg;base64,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"
-
-        client.sendMessage(formattedNumber, messageBody)
-        .then(() => {
-          return client.sendMessage(formattedNumber, {
-            mediaUrl: imageUrl  // Add image URL here
-          });
-        })
-        .then(() => {
-          console.log('Message and image sent successfully!');
-          res.status(200).send({ success: true, message: 'Message and image sent successfully!' });
-        })
-        .catch((err) => {
-          console.log('Failed to send message:', err);
-          res.status(500).send({ success: false, error: err.message });
-        });
+    client.sendMessage(formattedNumber, messageBody)
+      .then(() => {
+        console.log('Message sent successfully!');
+        res.status(200).send({ success: true, message: 'Message sent successfully!' });
+      })
+      .catch((err) => {
+        console.log('Failed to send message:', err);
+        res.status(500).send({ success: false, error: err.message });
+      });
   });
 
 const server = app.listen(process.env.PORT || port, hostname, () => {
