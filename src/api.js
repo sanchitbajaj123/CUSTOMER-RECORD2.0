@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 const Api="https://customer-record-2-0.vercel.app";
 const Api2="http://localhost:5000";
 async function add (data) {
@@ -51,7 +51,7 @@ async function sms(id){
     return data;
 }
 async function getqr() {
-    const response = await fetch(Api2+"/generateQR");
+    const response = await axios.get(Api2+"/generateQR");
     console.log('QR code response:', response);
     return response;
 }
