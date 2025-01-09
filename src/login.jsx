@@ -4,6 +4,7 @@ import { getqr } from './api';
 
 const Login = () => {
   const [qrCode, setQrCode] = useState(null);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   useEffect(() => {
     // Fetch the QR code from the server
@@ -12,13 +13,15 @@ const Login = () => {
         const response = await getqr(); // Call the getqr function from the API
         console.log('QR code response:', response);
         setQrCode(response.data); // Set the QR code state
+        setLoading(false); // Set loading to false once QR code is fetched
+        console.log('QR code set:', qrCode);
       } catch (error) {
         console.error('Failed to fetch QR code:', error);
+        setLoading(false); // Set loading to false in case of error
       }
     };
     fetchQRCode();
 
- 
     const onYouTubeIframeAPIReady = () => {
       let player;
       player = new window.YT.Player('video-background', {
@@ -62,6 +65,7 @@ const Login = () => {
       alert('Wrong password');
     }
   };
+
   const h6Style = {
     fontSize: '1.5rem',
     fontWeight: '700',
@@ -76,6 +80,7 @@ const Login = () => {
     letterSpacing: '1px',
     animation: 'pulse 1.5s infinite',
   };
+
   return (
     <div>
       <div className="video-bg" id="video-background"></div>
@@ -102,10 +107,21 @@ const Login = () => {
         </form>
         <div className="qr-section center-align">
           <h6 style={h6Style}>Scan QR Code to Connect whatsapp</h6>
+
+          {/* Display loading bar if loading is true */}
+          {loading && (
+            <div className="loading-bar">
+              <div className="progress">
+                <div className="indeterminate"></div>
+              </div>
+            </div>
+          )}
+
+          {/* Display QR code once it's fetched */}
           {qrCode ? (
-                  <img src={qrCode} /> // Render the QR code HTML
+            <img src={qrCode} alt="QR Code" />
           ) : (
-            <p style={{"color":"RED","fontSize":"25px"}}>ALREADY LINKED </p>
+            !loading && <p style={{ color: 'RED', fontSize: '25px' }}>ALREADY LINKED</p>
           )}
         </div>
       </div>
