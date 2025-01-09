@@ -1,6 +1,6 @@
 
-// const Api="https://customer-record-2-0.vercel.app";
-const Api="http://localhost:5000";
+const Api="https://customer-record-2-0.vercel.app";
+const Api2="http://localhost:5000";
 async function add (data) {
     console.log(data);
     const response = await fetch(Api+"/add-customer", {
@@ -44,14 +44,14 @@ async function pendingbalance(){
     return data;
 }
 async function sms(id){
-    const response = await fetch(Api+"/sms/"+id);
+    const response = await fetch(Api2+"/sms/"+id);
     const data = await response.json();
     console.log(data);
     alert("SMS sent successfully");
     return data;
 }
 async function getqr() {
-    const response = await fetch(Api+"/generateQR");
+    const response = await fetch(Api2+"/generateQR");
     console.log('QR code response:', response);
     return response;
 }
