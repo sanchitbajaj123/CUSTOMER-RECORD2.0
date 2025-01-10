@@ -41,7 +41,7 @@ function Sidetable() {
                 />
             </div>
             <center>
-                <h5>Customer List</h5>
+                <h2>Customer List</h2>
             </center>
             <table className="highlight">
                 <thead>
@@ -57,11 +57,11 @@ function Sidetable() {
                     {displayedCustomers.length > 0 ? (
                         displayedCustomers.map((customer) => (
                             <tr key={customer._id} onClick={() => handleRowClick(customer._id)}>
-                                <td>{customer.name}</td>
-                                <td>{customer.phone}</td>
-                                <td>{customer.dateAdded}</td>
-                                <td>{customer.timeAdded}</td>
-                                <td>{customer._id}</td>
+                                <td style={{"fontSize":"25px"}}>{customer.name}</td>
+                                <td style={{"fontSize":"25px"}}>{customer.phone}</td>
+                                <td style={{"fontSize":"25px"}}>{customer.dateAdded}</td>
+                                <td style={{"fontSize":"25px"}}>{customer.timeAdded}</td>
+                                <td style={{"fontSize":"25px"}}>{customer._id}</td>
                             </tr>
                         ))
                     ) : (
