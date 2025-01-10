@@ -7,38 +7,18 @@ body {
     padding: 0;
 }
 
-.main-content {
-    flex: 1 0 auto;
-    padding: 20px;
-    margin-top: 60px; /* offset for fixed header */
-}
-
-/* Container Styling */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
 .form-container,
 .table-container {
-    flex: 1;
-    min-width: 300px;
     background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
     max-height: min-content;
+    overflow: hidden;
+    margin-right: 0px;
+    width: 1500px;
 }
-
-.form-container:hover,
-.table-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+.form-container{
+    margin-top: 0px;
 }
-
 .table-container {
     overflow-x: auto;
 }
@@ -49,7 +29,9 @@ body {
     border-collapse: collapse;
     margin-bottom: 20px;
 }
-
+.sidet{
+    margin-top: 50px;
+}
 .table-container th,
 .table-container td {
     border: 1px solid #ddd;
@@ -147,16 +129,9 @@ header {
 }
 
 /* Container Styling */
-.form-container,
-.table-container {
-    flex: 1;
-    min-width: 300px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    z-index: 1; /* Lower than the navbar */
+
+.form{
+    display: flex;
 }
 .table-container {
     overflow-y: visible; /* Enables vertical scrolling only */
@@ -192,6 +167,7 @@ header {
     outline: none;
     transition: border-color 0.3s;
     background-color: #f8f8f8; /* Neutral background to avoid bright outlines */
+    font-size: 30px;
 }
 
 .input-field input:focus,
